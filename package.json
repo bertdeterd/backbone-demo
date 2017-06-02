@@ -1,0 +1,39 @@
+{
+  "name": "backbone-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --progress --watch",
+    "start": "webpack-dev-server --open",
+    "startdev": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bertdeterd/backbone-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bertdeterd/backbone-demo/issues"
+  },
+  "homepage": "https://github.com/bertdeterd/backbone-demo#readme",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "express": "^4.15.3",
+    "html-webpack-plugin": "^2.28.0",
+    "http-proxy-middleware": "^0.17.4",
+    "proxy-middleware": "^0.15.0",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "backbone": "^1.3.3",
+    "es5-shim": "^4.5.9",
+    "jquery": "^3.2.1",
+    "text-loader": "0.0.1",
+    "underscore": "^1.8.3"
+  }
+}

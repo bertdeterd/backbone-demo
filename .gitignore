@@ -1,0 +1,9 @@
+# OS X
+.DS_Store
+# IDE
+.idea
+# Development
+node_modules
+src/bower_components
+build
+.tmp

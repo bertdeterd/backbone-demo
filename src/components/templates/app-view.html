@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-md-12" id="messages"></div>
+    <div>
+        <%= name %>
+    </div>
+    <div>
+        <ul class="dropdown-menu">
+            <% _.each(list, function(_line){ %>
+                <li>
+                    <a tabindex="-1" href="#" data-attr="<%= _line.id %>" > 
+                         <%= _line.Code %>                            
+                    </a>
+                </li>
+                <% }); %>
+        </ul>
+
+
+    </div>
+</div>
