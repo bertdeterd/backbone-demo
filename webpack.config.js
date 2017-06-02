@@ -29,7 +29,7 @@ const config = {
     alias: {
         'text': "text-loader"
     }
-  },
+  },  
 
   module: {
     rules: [{
