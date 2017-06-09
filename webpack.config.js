@@ -5,7 +5,7 @@ module.exports = function(env) {
   var merge = require("webpack-merge");
   var ExtractTextPlugin = require("extract-text-webpack-plugin");
   var serviceUri = "";
-  const devSystem = "";
+  const devSystem = "http:/myhost:myport";
 
   const TARGET = env;
   TARGET === "dev"
