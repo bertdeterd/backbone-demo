@@ -1,0 +1,18 @@
+<div>
+
+
+    <div class="list-group">
+        <% _.each(items, function(item){ %>
+            <a href="#eenheden/<%= item.Code %>" class="list-group-item">
+
+                <h4 class="list-group-item-heading">
+                    <%= item.Code %>
+                </h4>
+                <p class="list-group-item-text">
+                    <%= item.Id %>
+                </p>
+            </a>
+            <% }); %>
+    </div>
+
+</div>

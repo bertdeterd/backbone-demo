@@ -1,36 +1,37 @@
-/* global SERVICE_URL */
-
 define(
   [
     "jquery",
     "underscore",
     "backbone",
-    "text!../templates/app-view.html",
+    "views/header-view",
+    "views/footer-view",
+    "text!../templates/app.html",
     "../collections/eenheid-collection"
   ],
-  function($, _, Backbone, viewTemplate, EenheidColl) {
+  function($, _, Backbone, HeaderView, FooterView, viewTemplate, EenheidColl) {
     "use strict";
     var AppView = Backbone.View.extend({
-      el: "div",
+      el: "#app",
 
       className: "container-fluid",
 
       template: _.template(viewTemplate),
 
+      initialize: function(options) {
+        this.render();
+      },
+
       render: function() {
-        var mydata = {};
-        var self = this;
-        var ee = new EenheidColl();
+        //render appview
+        var html;
+        html = this.template();
+        this.$el.html(html);
 
-		console.log(SERVICE_URL);
+        //render subviews
+        this.$("#header").html(new HeaderView().$el.html());
+        this.$("#footer").html(new FooterView().$el.html());
 
-        ee.fetch().done(function(data, status, xhr) {
-          mydata.list = data.d.results;
-          mydata.name = "haala";
-
-          var html = self.template(mydata);
-          self.$el.html(html);
-        });
+        return this;
       }
     });
 

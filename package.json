@@ -2,18 +2,21 @@
   "name": "backbone-demo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
-    "build": "webpack --progress --watch",
-    "start": "webpack-dev-server --open",
-    "startdev": "node server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:dev": "webpack --env=dev  --progress --colors",
+    "build:prod": "webpack --env=prod -p --progress --colors",
+    "start:dev": "webpack-dev-server --env=dev --host 127.0.0.1 --open",
+    "start": "node server/server.js",
+    "deploy": "npm run build:prod && grunt upload",
+   
+    "analyze": "webpack --env=prod -p --json > dist/stats.json --progress && webpack-bundle-analyzer ./dist/stats.json"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bertdeterd/backbone-demo.git"
   },
-  "author": "",
+  "author": "Bert Deterd",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/bertdeterd/backbone-demo/issues"
@@ -22,18 +25,35 @@
   "devDependencies": {
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "css-loader": "^0.28.4",
     "express": "^4.15.3",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.2",
+    "grunt": "^1.0.1",
+    "grunt-nwabap-ui5uploader": "^0.2.0",
+    "grunt-prompt": "^1.3.3",
     "html-webpack-plugin": "^2.28.0",
     "http-proxy-middleware": "^0.17.4",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.4",
     "proxy-middleware": "^0.15.0",
+    "style-loader": "^0.18.2",
+    "text-loader": "0.0.1",
+    "underscore-template-loader": "^0.7.3",
+    "url-loader": "^0.5.8",
     "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-bundle-analyzer": "^2.8.2",
+    "webpack-dev-server": "^2.4.5",
+    "webpack-merge": "^4.1.0"
   },
   "dependencies": {
     "backbone": "^1.3.3",
+    "bootstrap": "^3.3.7",
     "es5-shim": "^4.5.9",
+    "es6-shim": "^0.35.3",
     "jquery": "^3.2.1",
-    "text-loader": "0.0.1",
+    "opn": "^5.0.0",
     "underscore": "^1.8.3"
   }
 }
