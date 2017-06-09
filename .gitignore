@@ -7,4 +7,5 @@ node_modules
 src/bower_components
 build
 .tmp
-dist 
+dist
+build
