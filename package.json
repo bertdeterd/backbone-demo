@@ -9,7 +9,7 @@
     "start:dev": "webpack-dev-server --env=dev --host 127.0.0.1 --open",
     "start": "node server/server.js",
     "deploy": "npm run build:prod && grunt upload",
-    "open:dev": "start http://encsapdejci.ee.intern:8010/sap/bc/bsp/sap/zati_beheer/index.html",
+    
     "analyze": "webpack --env=prod -p --json > dist/stats.json --progress && webpack-bundle-analyzer ./dist/stats.json"
   },
   "repository": {
