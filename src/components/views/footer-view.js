@@ -1,6 +1,6 @@
 define(
-  ["jquery", "underscore", "backbone", "text!../templates/footer.html"],
-  function($, _, Backbone, viewTemplate) {
+  ["text!../templates/footer.html"],
+  function(viewTemplate) {
     "use strict";
     var FooterView = Backbone.View.extend({
       el: "#footer",

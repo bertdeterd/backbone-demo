@@ -1,7 +1,22 @@
-define(["jquery", "underscore", "backbone"], function($, _, Backbone) {
+define([], function() {
   "use strict";
   var Eenheid = Backbone.Model.extend({
-    idAttribute: "Code"
+    url: function(opt) {
+      return encodeURI(
+        SERVICE_URI +
+          "CodeListSet?$filter=Code eq '" +
+          this.Code +
+          "'&sap-client=200"
+      );
+    },
+
+    id: "Code",
+
+    idAttribute: "Code",
+
+    initialize: function(data) {
+      this.data = data;
+    }
   });
   return Eenheid;
 });

@@ -5,17 +5,25 @@ module.exports = function(env) {
   var merge = require("webpack-merge");
   var ExtractTextPlugin = require("extract-text-webpack-plugin");
   var serviceUri = "";
-  const devSystem = "http:/myhost:myport";
+  const devSystem = "http://encsapdejci.ee.intern:8010";
 
   const TARGET = env;
   TARGET === "dev"
     ? (serviceUri = "/proxy/sap/opu/odata/SAP/ZATI_MAIN_SRV/")
     : (serviceUri = "/sap/opu/odata/SAP/ZATI_MAIN_SRV/");
 
+  const extractSass = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    disable: false
+  });
+
   /**
  * Common config:
  * Generieke settings voor development en production
  */
+  console.log("Instellen algemene settings");
+  console.log("Service URI: " + serviceUri);
+
   const common = {
     entry: {
       main: "./src/components/main.js"
@@ -28,7 +36,13 @@ module.exports = function(env) {
 
     resolve: {
       alias: {
-        views: path.resolve(__dirname, "./src/components/views/")
+        views: path.resolve(__dirname, "./src/components/views/"),
+        models: path.resolve(__dirname, "./src/components/models/"),
+        collections: path.resolve(__dirname, "./src/components/collections/"),
+        components: path.resolve(__dirname, "./src/components/"),
+        routers: path.resolve(__dirname, "./src/routers/"),
+        assets: path.resolve(__dirname, "./src/assets/"),
+        partials: path.resolve(__dirname, "./src/assets/css/partials")
       }
     },
 
@@ -48,6 +62,25 @@ module.exports = function(env) {
           }),
           exclude: /node_modules/
         },
+
+
+//TEST
+   {
+            test: /\.scss$/,
+            use: extractSass.extract({
+                use: [{
+                    loader: "css-loader"
+                }, {
+                    loader: "sass-loader"
+                }],
+                // use style-loader in development
+                fallback: "style-loader"
+            })
+        },
+//EINDE TEST
+
+
+
         {
           test: /\.js$/,
           use: { loader: "babel-loader", query: { compact: false } },
@@ -61,7 +94,8 @@ module.exports = function(env) {
         jQuery: "jquery",
         jquery: "jquery",
         $: "jquery",
-        _: "underscore"
+        _: "underscore",
+        Backbone: "backbone"
       }),
 
       new ExtractTextPlugin("styles.css"),
@@ -80,17 +114,19 @@ module.exports = function(env) {
       }),
 
       new HtmlWebpackPlugin({
-        template: "./src/index.html",
+        template: "src/index.html",
         title: "ATI Beheer"
       })
     ]
   };
 
   /**
- * Aanvullende settings voor development 
- * Met name voor development server, maps en HMR
- */
+   * Aanvullende settings voor development 
+   * Met name voor development server, maps en HMR
+  */
   if (env === "dev") {
+    console.log("aanvullen dev settings");
+    console.log("Development systeem: " + devSystem);
     var devconfig = merge(common, {
       devtool: "inline-source-map",
       devServer: {
@@ -110,9 +146,18 @@ module.exports = function(env) {
     return devconfig;
   } else {
     /**
- * Aanvullende settings voor production 
- * Nu nog geen, anders merge toepassen
- */
-    return common;
+     * Aanvullende settings voor production 
+     * Met name voor compressie
+    */
+    var prodconfig = merge(common, {
+      plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+          compress: {
+            pure_funcs: ["console.log", "console.group", "console.groupEnd"]
+          }
+        })
+      ]
+    });
+    return prodconfig;
   }
 };

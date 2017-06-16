@@ -1,0 +1,21 @@
+@import "partials/colors.scss";
+@import "partials/fonts.scss";
+
+body {
+  background-color: $stedin-color-background;
+  height: 100%;
+  font-family: $font-family-stedin-regular;
+}
+
+a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, button.list-group-item:hover {
+   background-color:$stedin-color-2;
+}
+
+#content {
+  margin-top: 60px;
+}
+
+#mynavbar {
+  background-color: $stedin-color-2;
+}
+

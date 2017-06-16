@@ -1,14 +1,11 @@
 define(
   [
-    "jquery",
-    "underscore",
-    "backbone",
     "views/header-view",
     "views/footer-view",
     "text!../templates/app.html",
-    "../collections/eenheid-collection"
+    "collections/eenheid-collection"
   ],
-  function($, _, Backbone, HeaderView, FooterView, viewTemplate, EenheidColl) {
+  function(HeaderView, FooterView, viewTemplate, EenheidColl) {
     "use strict";
     var AppView = Backbone.View.extend({
       el: "#app",
@@ -22,12 +19,10 @@ define(
       },
 
       render: function() {
-        //render appview
         var html;
         html = this.template();
         this.$el.html(html);
 
-        //render subviews
         this.$("#header").html(new HeaderView().$el.html());
         this.$("#footer").html(new FooterView().$el.html());
 

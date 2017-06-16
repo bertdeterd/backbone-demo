@@ -1,21 +1,15 @@
 import "es5-shim";
 
-import AppView from "./views/app-view";
-import Backbone from "backbone";
+import AppView from "views/app-view";
 
-import "../assets/css/app.css";
-import "../assets/css/sticky-footer.css";
-import "../assets/css/header.css";
+import "assets/css/app.scss";
+import "assets/css/sticky-footer.css";
 
-import Workspace from "../routers/router";
-import $ from "jquery";
+import Workspace from "routers/router";
 
 $(function() {
-  console.log("init app");
   var appView = new AppView();
-  appView.render();
-
-
+  
   new Workspace();
   Backbone.history.start();
 });

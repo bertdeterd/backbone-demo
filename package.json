@@ -5,11 +5,11 @@
   "main": "index.html",
   "scripts": {
     "build:dev": "webpack --env=dev  --progress --colors",
-    "build:prod": "webpack --env=prod -p --progress --colors",
+    "build:prod": "webpack --env=prod -p  --progress --colors",
     "start:dev": "webpack-dev-server --env=dev --host 127.0.0.1 --open",
     "start": "node server/server.js",
     "deploy": "npm run build:prod && grunt upload",
-     "open:dev": "start http://yourhost:yourport/serviceuri", 
+    "open:dev": "start http://encsapdejci.ee.intern:8010/sap/bc/bsp/sap/zati_beheer/index.html",
     "analyze": "webpack --env=prod -p --json > dist/stats.json --progress && webpack-bundle-analyzer ./dist/stats.json"
   },
   "repository": {
@@ -37,6 +37,7 @@
     "http-proxy-middleware": "^0.17.4",
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
+    "node-sass": "^4.5.3",
     "proxy-middleware": "^0.15.0",
     "style-loader": "^0.18.2",
     "text-loader": "0.0.1",
